@@ -1,0 +1,30 @@
+1. Create a new directory called missing under /tmp.
+-> mkdir /tmp/
+
+2. Look up the touch program. The man program is your friend.
+-> man touch
+
+3. Use touch to create a new file called semester in missing.
+-> touch missing
+
+4. Write the following into that file, one line at a time:
+   #!/bin/sh
+   curl --head --silent https://missing.csail.mit.edu
+-> echo '#!/bin/sh' > semester
+   echo 'curl --head --silent https://missing.csail.mit.edu' >> semester
+
+5. Try to execute the file, i.e. type the path to the script (./semester) into your shell and press enter. Understand why it doesn’t work by consulting the output of ls (hint: look at the permission bits of the file).
+-> The execute permission is not set for the file
+
+6. Run the command by explicitly starting the sh interpreter, and giving it the file semester as the first argument, i.e. sh semester. Why does this work, while ./semester didn’t?
+-> The reason being that when ./semester is run, then the file opens up not having execute permissions on the file. But when sh is used to open it, the file is passed as a parameter to sh which only needs read permission on the file. Since, the sh has execute permission set on it, it can execute contents of the file.
+
+7. Look up the chmod program (e.g. use man chmod).
+-> chmod application is used to change the permissions on the file.
+
+8. Use chmod to make it possible to run the command ./semester rather than having to type sh semester. How does your shell know that the file is supposed to be interpreted using sh? See this page on the shebang line for more information.
+-> 'chmod 777 missing' is used to give file write permission.
+   As for second answer the application followed by '#!' is used to interpret the script written in file. '#!' is called shebang ( https://en.wikipedia.org/wiki/Shebang_(Unix) ). Since the first line of file is '#!/bin/sh' , the processor knows that it should be interpreted with sh application.
+
+9. Use | and > to write the “last modified” date output by semester into a file called last-modified.txt in your home directory.
+-> /semester | grep -i "last-modified" > last-modified.txt

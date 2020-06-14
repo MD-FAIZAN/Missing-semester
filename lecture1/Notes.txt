@@ -1,0 +1,39 @@
+complete lecture notes at -> https://missing.csail.mit.edu/2020/course-shell/
+echo $PATH -> gives me all the directories that shell is going to look into, when i give it a command to run application.
+which echo -> shows me the application along with the directory, which will be run.
+. -> current directory
+.. -> parent directory
+~ -> home directory
+cd - -> go back to directory that you were previously in
+flag and options are two different thing. Flag doesn't have input, while option does.
+__________ -> ls output
+^---___
+| ^  ^ ---
+| |  |  ^
+| |  |  |____________ these 3 indicates permissions set for permissions for everyone else.
+| |  |_______________ these 3 indicates permissions set for group which owns this file/dierectory.
+| |__________________ these 3 indicates permissions set for owner of the file/directory.
+|____________________ if d, signifies directory. if 
+
+permissions for directories and files mean different things.
+read on directories mean, if we can see all the files inside the directory or not.It's kind of a list.
+write for directory is whether you're allowed to rename, create or remove files within that directory.
+If you've write permissions on file and not on directory, it means that you can empty the file but can't delete it.
+execute on directory means, are you allowed to enter a directory. In order to execute a file you must have execute permission on all the parent directories as well as file, itself.
+man -> manual. Takes argument of another program, and gives it's manual page.
+control + l -> clears the screen and goes to top.
+cat -> prints content of a file
+by default i/o stream is terminal.
+< -> redirecting input stream to file or application output.
+> -> redirecting output stream to file or application.
+>> -> append
+| -> take the ouput of program to the left and make it an input to the program on the right.
+tail -> prints last n lines of the input.
+root user -> has user_id 0.
+sudo echo 500 > brightness -> gives permission denied, because programs don't know about redirection. The shell is giving input as user to brightness.
+# echo 500 > brightness -> '#' symbol means, run this as root.
+$->user and #->root
+tee -> command takes it's input and writes output to file as well as standard output.
+open -> opens the file in appropriate application. In theory, you don't need to open finder again.
+#! -> hashbang is an important concept in shell.A hashbang header means that the file is a script and needs to be interpreted by the program that is specified after the hashbang. This allows a script itself to tell the system how to interpret the script.With your script, the program loader will execute /bin/bash and pass ./script.sh as the command-line argument.I recommend using ./script.sh though, because you might not know which interpreter the script is requiring. So let the program loader determine that for you. wiki link -> https://en.wikipedia.org/wiki/Shebang_%28Unix%29 .
+./script.sh requires execution and readable bits, while bash script.sh only requires readable bit.
